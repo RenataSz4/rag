@@ -1,0 +1,4 @@
+Title: Airbnb Check-in
+Description: Check in to the downtown Airbnb and follow the lockbox instructions from the booking confirmation.
+Start: 2026-06-21 15:00
+Duration: 30 minutes

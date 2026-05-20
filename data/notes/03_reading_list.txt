@@ -1,0 +1,16 @@
+Books to read (2026)
+
+Currently reading:
+- "Designing Data-Intensive Applications" by Martin Kleppmann (chapter 5)
+
+Up next:
+- "Programming Rust" by Jim Blandy and Jason Orendorff
+- "The Pragmatic Programmer" by David Thomas and Andrew Hunt
+- "Clean Code" by Robert C. Martin
+
+Finished:
+- "Deep Learning with Python" by François Chollet ✓
+- "Atomic Habits" by James Clear ✓
+- "The Alchemist" by Paulo Coelho ✓
+
+Goal: 12 books this year. Currently at 3/12.

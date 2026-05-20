@@ -1,0 +1,4 @@
+Title: Computational Intelligence Homework Study Session
+Description: Study session for Professor Garcia's homework on fuzzy inference and transfer learning.
+Start: 2026-06-09 17:00
+Duration: 2 hours

@@ -1,0 +1,4 @@
+Title: Baja AI Summit
+Description: Conference day with the opening keynote in Hall B and the semantic search workshop in the afternoon.
+Start: 2026-06-27 09:30
+Duration: 7 hours

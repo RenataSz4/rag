@@ -1,0 +1,10 @@
+From: Mariana
+Subject: Demo plan for intelligent systems project
+
+Team,
+
+For Friday's demo, I will explain the FAISS index, Roberto will show the
+configuration with environment variables, and Sofia will run the chat example.
+
+Please add two extra fake notes and one SMS example before Thursday so the demo
+has enough documents to retrieve from.

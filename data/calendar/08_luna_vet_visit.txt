@@ -1,0 +1,4 @@
+Title: Luna Vaccine Appointment
+Description: Vet appointment at Happy Paws Clinic. Bring Luna's blue vaccination card.
+Start: 2026-06-16 16:15
+Duration: 45 minutes

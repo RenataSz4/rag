@@ -1,0 +1,4 @@
+Title: Planetarium Show
+Description: Evening show about summer constellations, visible planets, and how to identify the Milky Way.
+Start: 2026-07-01 20:00
+Duration: 1 hour

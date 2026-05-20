@@ -1,0 +1,4 @@
+Title: Book Club at Library Cafe
+Description: Monthly book club meeting with Laura and Paula, including the book gift exchange idea.
+Start: 2026-06-18 19:00
+Duration: 2 hours

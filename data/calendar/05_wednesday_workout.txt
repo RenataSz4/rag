@@ -1,0 +1,4 @@
+Title: Wednesday Workout
+Description: Gym session from the weekly workout schedule email.
+Start: 2026-06-17 18:30
+Duration: 1 hour

@@ -1,0 +1,13 @@
+Sofia: Hey, can you review my database schema before the meeting on Monday? I shared it on the Google Doc.
+
+Me: Sure, I'll look at it tonight.
+
+Sofia: Thanks! I'm not sure about the indexes. The feedback table might get huge.
+
+Me: We can partition by date. I'll add some comments on the doc.
+
+Sofia: Great. Also, Roberto said he's going with a fine-tuned DistilBERT for the sentiment model. Said it gives 92% accuracy on the test set.
+
+Me: Nice, that's solid. We can discuss the API endpoints at the meeting.
+
+Sofia: Perfect. See you Monday at 2pm in Room 305!

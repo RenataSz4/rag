@@ -1,0 +1,4 @@
+Title: Bike Tune-up Appointment
+Description: Drop off the bicycle for brake adjustment, chain cleaning, and tire pressure check.
+Start: 2026-06-24 11:30
+Duration: 45 minutes

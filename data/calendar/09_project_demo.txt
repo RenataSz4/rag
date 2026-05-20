@@ -1,0 +1,4 @@
+Title: Intelligent Systems Project Demo
+Description: Team demo where Mariana explains FAISS, Roberto shows environment variable configuration, and Sofia runs the chat example.
+Start: 2026-06-12 10:00
+Duration: 1 hour

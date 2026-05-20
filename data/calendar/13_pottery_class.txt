@@ -1,0 +1,4 @@
+Title: Pottery Class
+Description: Beginner ceramics class focused on making a small mug and learning basic glazing techniques.
+Start: 2026-06-23 18:00
+Duration: 2 hours

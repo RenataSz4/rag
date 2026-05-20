@@ -1,0 +1,4 @@
+Title: Board Game Evening
+Description: Casual board game meetup with strategy games, snacks, and a short teaching round for new players.
+Start: 2026-06-25 19:15
+Duration: 3 hours

@@ -1,0 +1,4 @@
+Title: John's Surprise Party
+Description: Surprise birthday party at John's apartment. Coordinate with Maria about decorations and arrive before John gets there.
+Start: 2026-06-14 19:30
+Duration: 3 hours

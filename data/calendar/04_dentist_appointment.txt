@@ -1,0 +1,4 @@
+Title: Dentist Appointment
+Description: Routine dentist appointment mentioned in the SMS reminder from Mom.
+Start: 2026-06-10 16:00
+Duration: 1 hour

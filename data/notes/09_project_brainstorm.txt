@@ -1,0 +1,9 @@
+Project brainstorm — Configurable RAG assistant
+
+Goal: make the assistant easier to run with different providers.
+
+Ideas:
+- Read model, base URL, and API key from environment variables.
+- Keep defaults so the first run still works for students.
+- Add optional commands like /notes or /sms only after the main pipeline works.
+- Use overfetching for filters instead of changing the vector index.

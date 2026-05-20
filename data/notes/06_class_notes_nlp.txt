@@ -1,0 +1,22 @@
+Lecture notes — Computational Intelligence, Week 11 (NLP)
+
+Key concepts:
+
+Tokenization: splitting text into tokens (words, subwords, characters).
+  - Word-level: simple but large vocabulary, can't handle unknown words
+  - Subword (BPE): balance between vocab size and coverage
+  - Tools: tiktoken (OpenAI), HuggingFace tokenizers
+
+Bag of Words (BoW): represents text as word frequency vector
+  - Loses word order
+  - Sparse, high-dimensional
+  - Good baseline for classification
+
+TF-IDF: like BoW but weights by importance
+  - TF = term frequency in document
+  - IDF = inverse document frequency across corpus
+  - Penalizes common words (the, is, a)
+
+Next class: embeddings — dense vectors that capture semantic meaning!
+
+Homework: implement a text classifier using TF-IDF + logistic regression on the movie reviews dataset.

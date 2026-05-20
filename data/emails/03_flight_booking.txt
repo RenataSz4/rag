@@ -1,0 +1,26 @@
+From: flights@airline-notifications.com
+To: me@email.com
+Date: May 28, 2026
+Subject: Booking Confirmation — Flight to Guadalajara
+
+Booking Reference: XYZ789
+
+Outbound Flight:
+  Flight: VB 2847
+  Date: Friday, June 12, 2026
+  Departure: 10:15 AM from Tijuana (TIJ)
+  Arrival: 12:45 PM in Guadalajara (GDL)
+  Terminal: 1
+  Seat: 14A (window)
+
+Return Flight:
+  Flight: VB 2848
+  Date: Sunday, June 14, 2026
+  Departure: 6:30 PM from Guadalajara (GDL)
+  Arrival: 9:00 PM in Tijuana (TIJ)
+  Terminal: 1
+  Seat: 14C (aisle)
+
+Baggage: 1 carry-on included. Checked bag purchased (25 kg).
+
+Remember to arrive at the airport at least 2 hours before departure. You can check in online starting 24 hours before your flight.

@@ -1,0 +1,22 @@
+From: newsletter@techdigest.com
+To: me@email.com
+Date: June 2, 2026
+Subject: This Week in Tech — AI Breakthroughs, New Gadgets & More
+
+Welcome to this week's Tech Digest!
+
+TOP STORIES:
+
+1. OpenAI Announces GPT-5.5: The latest model shows significant improvements in reasoning and code generation. Available through the API starting next month.
+
+2. Apple's WWDC 2026 Highlights: New AR glasses announced, along with major updates to iOS 20 and macOS Sequoia. Developers can access the beta starting June 10.
+
+3. Global Chip Shortage Update: TSMC reports increased capacity at its Arizona fab, potentially easing supply constraints by Q4 2026.
+
+4. Cybersecurity Alert: A new phishing campaign targets remote workers through fake VPN notifications. Update your security software and verify links before clicking.
+
+UPCOMING EVENTS:
+- Google I/O Extended: June 15-16
+- AWS re:Invent preview webinar: June 20
+
+You're receiving this because you subscribed to Tech Digest Weekly. Unsubscribe here.

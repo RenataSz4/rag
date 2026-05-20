@@ -1,0 +1,20 @@
+From: prof.garcia@cetys.mx
+To: class-compint-2026@cetys.mx
+Date: June 3, 2026
+Subject: Homework Assignment — Week 12
+
+Hi everyone,
+
+For this week's homework, please complete the following:
+
+1. Read Chapter 8 of "Deep Learning with Python" (sections 8.1 through 8.4)
+2. Implement a transfer learning pipeline using a pre-trained ResNet model. Fine-tune it on the provided flower classification dataset (available on the course portal).
+3. Write a short report (1-2 pages) comparing the performance of training from scratch vs. fine-tuning. Include accuracy curves and a confusion matrix.
+
+Due date: Friday, June 12, 2026 at 11:59 PM.
+Submit through the course portal. Late submissions will lose 10% per day.
+
+If you have any questions, come to office hours (Tuesdays 4-6 PM, Room 204).
+
+Best,
+Prof. García

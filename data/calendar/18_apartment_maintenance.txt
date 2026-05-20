@@ -1,0 +1,4 @@
+Title: Apartment Maintenance Window
+Description: Building maintenance team will inspect smoke detectors and replace the kitchen faucet filter.
+Start: 2026-06-29 13:00
+Duration: 2 hours

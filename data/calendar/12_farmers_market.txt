@@ -1,0 +1,4 @@
+Title: Farmers Market Visit
+Description: Morning visit to the neighborhood farmers market to buy peaches, sourdough bread, and fresh flowers.
+Start: 2026-06-22 09:00
+Duration: 1 hour 30 minutes

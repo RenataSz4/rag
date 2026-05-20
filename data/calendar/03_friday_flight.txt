@@ -1,0 +1,4 @@
+Title: Friday Flight to Mexico City
+Description: Flight departure listed in the airline booking email. Arrive at the airport two hours early.
+Start: 2026-06-19 08:45
+Duration: 2 hours 10 minutes

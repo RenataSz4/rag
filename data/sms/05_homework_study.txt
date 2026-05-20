@@ -1,0 +1,15 @@
+David: Have you started the transfer learning homework for Prof. García's class?
+
+Me: Not yet, but I downloaded the flower dataset. Planning to start Thursday.
+
+David: Want to work on it together? We could meet at the library.
+
+Me: Yeah! Thursday at 4pm works for me. Second floor?
+
+David: Perfect. I already read the chapter. The ResNet fine-tuning part is actually pretty straightforward with PyTorch.
+
+Me: Good to know. I'll read it before we meet so we can jump straight into coding.
+
+David: Sounds like a plan. Don't forget we need the report too — accuracy curves and confusion matrix.
+
+Me: Right, I'll bring my laptop with matplotlib ready to go.

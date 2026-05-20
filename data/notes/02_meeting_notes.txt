@@ -1,0 +1,23 @@
+Meeting notes — Project Kickoff (June 2, 2026)
+
+Attendees: Me, Sofia, Roberto, Diana
+
+Project: Customer feedback analysis dashboard
+Deadline: July 15, 2026
+
+Key decisions:
+- We'll use Python + FastAPI for the backend
+- Frontend with React (Diana has experience)
+- Database: PostgreSQL
+- Roberto will handle the ML sentiment analysis pipeline
+- Sofia is doing the data ingestion module
+- I'm responsible for the REST API and deployment
+
+Action items:
+- Everyone: set up dev environment by June 5
+- Roberto: research pre-trained sentiment models, present options by June 9
+- Sofia: draft the database schema, share by June 6
+- Me: create the GitHub repo and CI/CD pipeline by June 5
+- Diana: wireframe the dashboard UI by June 9
+
+Next meeting: June 9, 2026 at 2:00 PM (Room 305)

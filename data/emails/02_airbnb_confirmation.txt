@@ -1,0 +1,21 @@
+From: airbnb@booking-confirmation.com
+To: me@email.com
+Date: June 1, 2026
+Subject: Your reservation is confirmed — Cabin in Valle de Guadalupe
+
+Hi! Your reservation is confirmed.
+
+Property: Rustic Cabin with Vineyard View
+Location: Carretera Tecate-Ensenada Km 83, Valle de Guadalupe
+Check-in: Friday, June 12, 2026 at 3:00 PM
+Check-out: Sunday, June 14, 2026 at 11:00 AM
+
+Check-in instructions:
+1. When you arrive, go to the main gate. The access code is 4782#.
+2. Walk past the garden to the second cabin on the left.
+3. The key is inside a lockbox mounted next to the front door. The lockbox code is 1234.
+4. Wi-Fi network: CabinGuest, password: vineyardview2026
+
+Please remember that quiet hours are from 10pm to 8am. No pets allowed.
+
+Enjoy your stay!

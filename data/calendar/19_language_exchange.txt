@@ -1,0 +1,4 @@
+Title: Language Exchange Meetup
+Description: Spanish-English conversation meetup at the community center with rotating discussion tables.
+Start: 2026-06-30 17:30
+Duration: 1 hour 30 minutes
