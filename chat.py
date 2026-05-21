@@ -44,8 +44,8 @@ def main():
     print("Initializing assistant...")
     config = load_config_from_env()
     assistant = Assistant.from_config(config)
-    subprocess.call('cls' if os.name == 'nt' else 'clear')
-
+    subprocess.call('cls' if os.name == 'nt' else 'clear', shell=True)
+    
     print(WELCOME)
 
     while True:
@@ -64,7 +64,7 @@ def main():
 
         if question.lower() == "/clear":
             assistant.clear_history()
-            subprocess.call('cls' if os.name == 'nt' else 'clear')
+            subprocess.call('cls' if os.name == 'nt' else 'clear', shell=True)
             print("\nConversation history cleared.\n")
             continue
 

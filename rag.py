@@ -1,5 +1,5 @@
 # You might need the following imports. Feel free to change it if you opt for different libraries.
-
+from __future__ import annotations
 import os
 import glob as globmod
 from typing import Any
@@ -34,19 +34,19 @@ def resolve_config(config: dict[str, Any] | None = None) -> dict[str, Any]:
     resolved = {
         "api_key": config.get("api_key", None),
         "base_url": config.get("base_url", None),
-        "model": config.get("model", DEFAULT_LLM_MODEL),
-        "embedding_model": config.get("embedding_model", DEFAULT_EMBEDDING_MODEL),
+        "model": config.get("model") or DEFAULT_LLM_MODEL,
+        "embedding_model": config.get("embedding_model") or DEFAULT_EMBEDDING_MODEL,
         "top_k": _parse_int_setting(
             "TOP_K",
-            config.get("top_k", DEFAULT_TOP_K),
+            config.get("top_k") or DEFAULT_TOP_K,
         ),
         "chunk_size": _parse_int_setting(
             "CHUNK_SIZE",
-            config.get("chunk_size", DEFAULT_CHUNK_SIZE),
+            config.get("chunk_size") or DEFAULT_CHUNK_SIZE,
         ),
         "chunk_overlap": _parse_int_setting(
             "CHUNK_OVERLAP",
-            config.get("chunk_overlap", DEFAULT_CHUNK_OVERLAP),
+            config.get("chunk_overlap") or DEFAULT_CHUNK_OVERLAP,
         ),
     }
 
@@ -108,7 +108,12 @@ def build_index(
     The index contains normalized float32 embeddings generated from each
     chunk's text with the provided embedding model.
     """
-    pass
+    texts = [chunk.page_content for chunk in chunks]
+    embeddings = embedding_model.encode(texts, normalize_embeddings=True).astype(np.float32)
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatIP(dimension)
+    index.add(embeddings)
+    return index
 
 
 def retrieve(
@@ -123,10 +128,28 @@ def retrieve(
     Results are ordered by similarity and include the chunk text, similarity
     score, and metadata for each matching chunk.
     """
-    pass
+    query_vec = model.encode([query], normalize_embeddings=True).astype(np.float32)
+    scores, indices = index.search(query_vec, k)
+    results = []
+    for score, idx in zip(scores[0], indices[0]):
+        if idx == -1:
+            continue
+        results.append({
+            "text": chunks[idx].page_content,
+            "score": float(score),
+            "metadata": chunks[idx].metadata,
+        })
+    return results
 
 
-SYSTEM_PROMPT = ""
+SYSTEM_PROMPT = """You are a personal digital assistant. Answer the user's question \
+using ONLY the provided context from their personal documents \
+(emails, notes, SMS, and calendar events). Follow these rules:
+- If the context doesn't contain the answer, say "I don't have enough \
+information to answer this question."
+- Be concise and precise.
+- Do not use prior knowledge outside of the context.
+- When referencing information, mention the source type and file."""
 
 
 class Assistant:
@@ -161,7 +184,35 @@ class Assistant:
         conversation messages, and the system prompt. The assistant response is
         appended to history alongside the user message.
         """
-        pass
+        num_results = k if k is not None else self.top_k
+        search_results = retrieve(question, self.index, self.model, self.chunks, num_results)
+
+        context_parts = []
+        source_files = []
+        for result in search_results:
+            context_parts.append(result["text"])
+            src = result["metadata"].get("source", "unknown")
+            if src not in source_files:
+                source_files.append(src)
+
+        context_block = "\n\n---\n\n".join(context_parts)
+
+        user_content = f"Context:\n{context_block}\n\nQuestion: {question}"
+
+        self.history.append({"role": "user", "content": user_content})
+
+        response = self.client.messages.create(
+            model=self.llm_model,
+            system=SYSTEM_PROMPT,
+            messages=self.history,
+            max_tokens=1024,
+        )
+
+        answer = response.content[0].text
+        self.history.append({"role": "assistant", "content": answer})
+
+        ref_list = "\n".join(f"- {src}" for src in source_files)
+        return f"{answer}\n\nReference:\n{ref_list}"
 
     def clear_history(self) -> None:
         """Empties the conversation history."""
