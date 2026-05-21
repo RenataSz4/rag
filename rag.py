@@ -7,16 +7,75 @@ import numpy as np
 import faiss
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
 from anthropic import Anthropic
 
 # Default configs
 DEFAULT_DATA_DIR = "data"
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+DEFAULT_RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 DEFAULT_LLM_MODEL = "claude-haiku-4-5"
 DEFAULT_CHUNK_SIZE = 256
 DEFAULT_CHUNK_OVERLAP = 32
 DEFAULT_TOP_K = 4
+DEFAULT_OVERFETCH = 20
+
+TAG_DOC_TYPE = {
+    "/notes": "notes",
+    "/sms": "sms",
+    "/calendar": "calendar",
+    "/email": "emails",
+    "/emails": "emails",
+}
+
+
+def extract_filter(query: str) -> tuple[str, str | None]:
+    """Detects a tag in the query and returns clean_query, doc_type or None."""
+    words = query.split() # split gets us every word
+    
+    # initialize returns
+    doc_type = None
+    kept = []
+
+    # go through all words
+    for word in words:
+        tag = word.lower()
+
+        # and check if they match a tag
+        if doc_type is None and tag in TAG_DOC_TYPE:
+            doc_type = TAG_DOC_TYPE[tag]
+        else:
+            kept.append(word)
+
+    # return the found doc type and the cleaned query without the tag words
+    return " ".join(kept), doc_type
+
+
+def rerank(
+        query: str,
+        results: list[dict],
+        crossencoder: CrossEncoder,
+        k: int,
+) -> list[dict]:
+    """Re-ranks results with a CrossEncoder and returns top k."""
+
+    # no results
+    if not results:
+        return results
+    
+    # pair the query with each result text
+    pairs = [(query, r["text"]) for r in results]
+
+    # get scores for each pair
+    scores = crossencoder.predict(pairs)
+    
+    # attach scores to results
+    for r, s in zip(results, scores):
+        r["score"] = float(s)
+    
+    # sort by score and return the top k
+    results.sort(key=lambda r: r["score"], reverse=True)
+    return results[:k]
 
 
 def _parse_int_setting(name: str, value: Any) -> int:
@@ -175,6 +234,7 @@ class Assistant:
         self.config = resolve_config(config)
         self.llm_model = self.config["model"]
         self.top_k = self.config["top_k"]
+        self.cross_encoder = CrossEncoder(DEFAULT_RERANK_MODEL)
         self.history: list[dict[str, str]] = []
 
     def ask(self, question: str, k: int | None = None) -> str:
@@ -185,7 +245,21 @@ class Assistant:
         appended to history alongside the user message.
         """
         num_results = k if k is not None else self.top_k
-        search_results = retrieve(question, self.index, self.model, self.chunks, num_results)
+
+        # overfetching
+        # first we exxtract the question and the doc type
+        clean_question, doc_type = extract_filter(question)
+
+        # then, we get more results (num_results * 5), clamped to DEFAULT_OVERFETCH, to have more candidates for the re-ranker and filtering
+        fetch_k = min(max(num_results * 5, num_results), DEFAULT_OVERFETCH)
+        search_results = retrieve(clean_question, self.index, self.model, self.chunks, fetch_k)
+
+        # if a doc type was specified, filter results by it 
+        if doc_type is not None:
+            search_results = [r for r in search_results if r["metadata"].get("doc_type") == doc_type]
+
+        # then rerank
+        search_results = rerank(clean_question, search_results, self.cross_encoder, num_results)
 
         context_parts = []
         source_files = []
