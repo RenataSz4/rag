@@ -8,12 +8,12 @@ import faiss
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
-from openai import OpenAI
+from anthropic import Anthropic
 
 # Default configs
 DEFAULT_DATA_DIR = "data"
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-DEFAULT_LLM_MODEL = "gpt-4.1-mini"
+DEFAULT_LLM_MODEL = "claude-haiku-4-5"
 DEFAULT_CHUNK_SIZE = 256
 DEFAULT_CHUNK_OVERLAP = 32
 DEFAULT_TOP_K = 4
@@ -70,7 +70,15 @@ def load_documents(data_dir: str = DEFAULT_DATA_DIR) -> list[Document]:
     as `page_content` and includes metadata for the source file path and
     document type.
     """
-    pass
+    docs = []
+    for doc_type in ["emails", "notes", "sms", "calendar"]:
+        pattern = os.path.join(data_dir, doc_type, "*.txt")
+        for path in globmod.glob(pattern):
+            with open(path, "r", encoding="utf-8") as f:
+                text = f.read()
+            metadata = {"source": path, "doc_type": doc_type}
+            docs.append(Document(page_content=text, metadata=metadata))
+    return docs
 
 
 def split_documents(
@@ -83,7 +91,12 @@ def split_documents(
     The resulting chunked Document objects use the configured chunk size and
     overlap while preserving the original document metadata.
     """
-    pass
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+    )
+
+    return text_splitter.split_documents(docs)
 
 
 def build_index(
@@ -129,7 +142,7 @@ class Assistant:
             index: faiss.IndexFlatIP,
             model: SentenceTransformer,
             chunks: list[Document],
-            client: OpenAI,
+            client: Anthropic,
             config: dict[str, Any] | None = None,
     ) -> None:
         self.index = index
@@ -187,7 +200,7 @@ class Assistant:
             client_kwargs["api_key"] = resolved_config["api_key"]
         if resolved_config["base_url"]:
             client_kwargs["base_url"] = resolved_config["base_url"]
-        client = OpenAI(**client_kwargs)
+        client = Anthropic(**client_kwargs)
 
         print("Ready!\n")
         return cls(index, embedding_model, chunks, client, resolved_config)
